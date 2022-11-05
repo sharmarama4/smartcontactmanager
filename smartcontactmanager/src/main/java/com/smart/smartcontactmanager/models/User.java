@@ -2,6 +2,7 @@ package com.smart.smartcontactmanager.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +11,11 @@ import java.util.List;
 @Table(name="user")
 public class User {
     @Id
+
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @NotBlank(message ="Name field is required !!" )
+
+    private  int id;
+   // @NotBlank(message ="Name field is required !!" )
     @Size(min=2,max=20,message="min 2 and max 20 character are allowed !! ")
     private String name;
     @Column(unique = true)
@@ -27,10 +30,9 @@ public class User {
     private String imageUrl;
     @Column(length = 500)
     private String about;
-    @ManyToOne
-    private Contact contact;
- /*@OneToMany(cascade = CascadeType.MERGE,fetch = FetchType.LAZY,mappedBy = "user")
-    private List<Contact>contacts=new ArrayList<>();*/
+
+ @OneToMany(cascade = CascadeType.MERGE,fetch = FetchType.LAZY,mappedBy = "user")
+    private List<Contact>contacts=new ArrayList<>();
 
     public User() {
     }
@@ -43,12 +45,12 @@ public class User {
         this.contacts = contacts;
     }*/
 
-    public Contact getContact() {
-        return contact;
+    public List<Contact> getContacts() {
+        return contacts;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
     }
 
     public int getId() {
@@ -126,7 +128,7 @@ public class User {
                 ", enabled=" + enabled +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", about='" + about + '\'' +
-                ", contact=" + contact +
+                ", contacts=" + contacts +
                 '}';
     }
 }
