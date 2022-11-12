@@ -14,6 +14,7 @@ import org.thymeleaf.expression.Messages;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class RegisterController {
@@ -23,7 +24,7 @@ public class RegisterController {
     private UserRepository userRepository;
     @RequestMapping(value="/signup", method=RequestMethod.GET)
     public String signup(Model model){
-        model.addAttribute("title","Register-smart contact manager ");//to get the title
+        model.addAttribute("title","Register-smart shop manager ");//to get the title
         model.addAttribute("user",new User());
         return "signup";
     }
@@ -44,9 +45,9 @@ public class RegisterController {
                 System.out.println("you have not agreed the terms and conditions");
                 throw new Exception("you have not agreed the terms and conditions");
             }
-            if(result1.hasErrors()){
-                System.out.println("ERROR"+result1.toString());
-                model.addAttribute("user",user);
+            if (result1.hasErrors()) {
+                System.out.println("ERROR" + result1.toString());
+                model.addAttribute("user", user);
                 return "signup";
             }
             user.setRole("ROLE_USER");
@@ -58,7 +59,7 @@ public class RegisterController {
             User result = userRepository.save(user);
 
             model.addAttribute("user", new User());
-            session.setAttribute("message", new Message("Successfully Registered !!" , "alert-success"));
+            session.setAttribute("message", new Message("Successfully Registered !!", "alert-success"));
             return "signup";
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,6 +67,7 @@ public class RegisterController {
             session.setAttribute("message", new Message("Something went wrong !!" + e.getMessage(), "alert-danger"));
             return "signup";
         }
+    }
 
     }
-}
+

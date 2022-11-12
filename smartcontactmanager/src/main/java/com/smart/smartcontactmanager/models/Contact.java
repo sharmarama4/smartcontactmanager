@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="CONTACT")
+@Table(name="contact")
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,11 +18,11 @@ public class Contact {
     private String image;
     @Column(length = 5000)
     private String description;
-   /* @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "contact")
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "contact")
     private List<User> users = new ArrayList<>();
-*/
-    @ManyToOne
-  private User user;
+
+    /*@ManyToOne
+  private User user;*/
     public Contact() {
     }
 
@@ -35,7 +35,7 @@ public class Contact {
         this.cId = cId;
     }
 
- public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -90,8 +90,8 @@ public class Contact {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
+}
+   /*
     public User getUser() {
         return user;
     }
@@ -99,19 +99,4 @@ public class Contact {
     public void setUser(User user) {
         this.user = user;
     }
-
-    @Override
-    public String toString() {
-        return "Contact{" +
-                "cId=" + cId +
-                ", name='" + name + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", work='" + work + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", image='" + image + '\'' +
-                ", description='" + description + '\'' +
-                ", user=" + user +
-                '}';
-    }
-}
+}*/

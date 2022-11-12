@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+  S
+  <title>Animals</title>
+  <link rel = "stylesheet" th:href ="@{/css/cssFTW.css}">
+
+</head>
+
+<body>
+
+<div class="main">
+  <!-- <pre id="quote">"Products from <span th:text="${product.category.categoryName}">categoryName</span>"</pre>-->
+  <a th:href="@{/categories}"> BACK </a>
+
+  <ul th:each="product:${products}">
+
+    <a th:text="${product.productName}"></a>
+
+   <!-- <a th:href="@{/deleteProduct/{id}(id=${product.id})}"><button>Delete</button></a>-->
+  </ul>
+
+  <form method="post" th:action="@{/user/addProduct/{c}(c=${product.category.categoryName})}">
+
+    <!--   <input type="text" name="name" th:text ="${product.productName}">-->
+    <input type="text" name="productName" th:field="*{product.productName}" class="form-control mb-4 col-4" placeHolder="Name"/>
+    <input type="submit" value="create">
+
+  </form>
+</div>
+</body>
+
+</html>

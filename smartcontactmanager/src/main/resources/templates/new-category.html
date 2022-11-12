@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Category Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<section>
+<div class="fluid"></div><a th:href="@{/categories}">Back to Category list</a></div>
+<div class="container ">
+    <h1>Category Management System</h1>
+    <hr>
+    <h2>Save Category</h2>
+    <form action="#" th:action="@{/saveCategory}" th:object="${category}" method="post">
+
+
+        <input type="text" name="categoryName" th:field="*{categoryName}" class="form-control mb-4 col-4" placeHolder="Name"/>
+
+
+        <input type="text" name="description"  th:field="*{description}" class="form-control mb-4 col-4"  placeHolder="Description"/>
+
+        <input type="image" name="imageUrl" th:field="@{/imageUrl/plant.jpg}" class="form-control  mb-4 col-4"  placeHolder="Image"/>
+        <button type="submit" class="btn btn -info col-2">Save Category</button>
+    </form>
+</div>
+</section>
+</body>
+</html>
